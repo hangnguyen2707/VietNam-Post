@@ -19,7 +19,7 @@ const ConfirmOrder = () => {
                                 <th>Người Gửi</th>
                                 <th>Người Nhận</th>
                                 <th>Ngày Xác Nhận Đơn</th>
-                                <th> Gửi Đến Điểm Tập Kết</th>
+                                <th> Gửi Đến Điểm Kho</th>
                                 <th>Điểm Giao Dịch Ghi Nhận Đơn</th>
                                 <th>Xác Nhận</th>
                             </tr>

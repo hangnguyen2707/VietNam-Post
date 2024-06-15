@@ -85,7 +85,7 @@ class orderController {
     async statistics(req, res, next) {
         const spotID = req.query.spotID;
         console.log(req.query);
-        var result = {};
+        var result = {}; 
         if (spotID) {
             // Số lượng hàng gửi đi khu vực khác
             result.totalSent = await order.find({receivePointID: spotID}).count().exec();

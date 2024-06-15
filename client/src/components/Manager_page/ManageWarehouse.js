@@ -67,7 +67,7 @@ const ManageWarehouse = () => {
 
     const handleDeletePoint = () => {
         // Add your logic for deleting an existing transaction point
-        const shouldDelete = window.confirm('Bạn có chắc muốn xoá điểm tập kết này?');
+        const shouldDelete = window.confirm('Bạn có chắc muốn xoá điểm kho này?');
     };
 
     return (
@@ -89,7 +89,7 @@ const ManageWarehouse = () => {
                             <Link to="/managetranspoints">Quản Lý Điểm Giao Dịch</Link>
                         </li>
                         <li>
-                            <Link to="/managewarehouse">Quản Lý Điểm Tập Kết</Link>
+                            <Link to="/managewarehouse">Quản Lý Điểm Kho</Link>
                         </li>
                         <li><Link to="/">Log Out</Link></li>
                         {/* <li onClick={() => handleMenuClick('login')}>Đăng Xuất</li> */}
@@ -97,21 +97,21 @@ const ManageWarehouse = () => {
                     </ul>
                 </div>
                 <div className="trans-content">
-                    <h1>Quản Lý Điểm tập kết</h1>
+                    <h1>Quản Lý Điểm kho</h1>
                     <div className='transpoint'>
 
                         <div className='list-transpoint'>
                             <button className="btn btn-primary" onClick={openModal}>
-                                Thêm Điểm Tập Kết
+                                Thêm Điểm Kho
                             </button>
                             <Modal
                                 isOpen={modalIsOpen}
                                 onRequestClose={closeModal}
-                                contentLabel="Thêm Điểm Tập Kết"
+                                contentLabel="Thêm Điểm Kho"
                                 className="react-modal-content"
                                 overlayClassName="react-modal-overlay"
                             >
-                                <h2>Thêm Điểm Tập Kết</h2>
+                                <h2>Thêm Điểm Kho</h2>
                                 <form>
 
                                     <div className="form-group">
@@ -173,7 +173,7 @@ const ManageWarehouse = () => {
 
                         {selectedPoint && (
                             <div className={`info panel panel-default ${selectedPoint ? 'show' : ''}`}>
-                                <div className="panel-heading"><h2>Thông Tin Chi Tiết Điểm Tập Kết</h2></div>
+                                <div className="panel-heading"><h2>Thông Tin Chi Tiết Điểm Kho</h2></div>
                                 <div className="panel-body">
                                     <p><strong>ID:</strong> {selectedPoint.id}</p>
                                     <p><strong>Tên Điểm:</strong> {selectedPoint.name}</p>

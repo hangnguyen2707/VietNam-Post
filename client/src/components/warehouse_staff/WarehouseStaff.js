@@ -108,7 +108,7 @@ const WarehouseStaff = () => {
                                 <Link to="/managetranspoints">Quản Lý Điểm Giao Dịch</Link>
                             </li>
                             <li>
-                                <Link to="/managewarehouse">Quản Lý Điểm Tập Kết</Link>
+                                <Link to="/managewarehouse">Quản Lý Điểm Kho</Link>
                             </li>
                             <li><Link to="/">Log Out</Link></li>
                         </ul>

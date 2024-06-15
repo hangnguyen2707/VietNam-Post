@@ -4,22 +4,39 @@ import AuthContext from '../variable/AuthContext';
 import React, { useState, useEffect, useContext } from 'react';
 import Navbar from '../bar/Navbar';
 import Modal from 'react-modal';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 const EmployeeManagement = () => {
   const { role } = useContext(AuthContext);
   const [employees, setEmployees] = useState([
-    { id: 1, name: 'Nguyen Van A', account: 'A123', password: 'A123', position: 'Giao Dịch Viên', gender: 'Nam' },
-    { id: 2, name: 'Tran Thi B', position: 'Nhân Viên Giao Hàng', account: 'B123', password: 'B123', gender: 'Nữ' },
-    // Thêm nhân viên khác tùy ý
+    // { id: 1, name: 'Nguyen Van A', account: 'A123', password: 'A123', position: 'Giao Dịch Viên', gender: 'Nam' },
+    // { id: 2, name: 'Tran Thi B', position: 'Nhân Viên Giao Hàng', account: 'B123', password: 'B123', gender: 'Nữ' },
+    // // Thêm nhân viên khác tùy ý
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingEmployee, setEditingEmployee] = useState({ id: null, name: '', account: '', password: '', position: '', gender: '' });
+  const [editingEmployee, setEditingEmployee] = useState({ id: null, name: '', account: '', password: '', position: '', phone: '' });
+
+
+  useEffect(() => {
+    // Hàm để gọi API
+    const fetchEmployees = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/manager/listAcount');
+        setEmployees(response.data);
+        console.log(employees)
+      } catch (err) {
+        console.log("Error")
+      }
+    };
+
+    // Gọi hàm fetchEmployees khi component được mount
+    fetchEmployees();
+  }, []);
 
   const openModal = (employee) => {
-    setEditingEmployee(employee ? { ...employee } : { id: null, name: '', account: '', password: '', position: '', gender: 'Nam' });
+    setEditingEmployee(employee ? { ...employee } : { id: null, name: '', account: '', password: '', position: '', phone: '' });
     setIsModalOpen(true);
   };
 
@@ -43,7 +60,7 @@ const EmployeeManagement = () => {
       position: editingEmployee.position,
       account: editingEmployee.account,
       password: editingEmployee.password,
-      gender: editingEmployee.gender,
+      phone: editingEmployee.phone,
     };
 
     setEmployees([...employees, newEmployee]);
@@ -85,7 +102,7 @@ const EmployeeManagement = () => {
                 <Link to="/managetranspoints">Quản Lý Điểm Giao Dịch</Link>
               </li>
               <li>
-                <Link to="/managewarehouse">Quản Lý Điểm Tập Kết</Link>
+                <Link to="/managewarehouse">Quản Lý Điểm Kho</Link>
               </li>
               <li><Link to="/">Log Out</Link></li>
             </ul>
@@ -134,7 +151,7 @@ const EmployeeManagement = () => {
                   <th>ID</th>
                   <th>Tên Nhân Viên</th>
                   <th>Chức Vụ</th>
-                  <th>Giới Tính</th>
+                  <th>Số điện thoại</th>
                   <th></th>
                 </tr>
               </thead>
@@ -142,9 +159,9 @@ const EmployeeManagement = () => {
                 {employees.map((employee) => (
                   <tr key={employee.id}>
                     <td>{employee.id}</td>
-                    <td><Link to={`/profile/${employee.id}`}>{employee.name}</Link></td>
-                    <td>{employee.position}</td>
-                    <td>{employee.gender}</td>
+                    <td><Link to={`/profile/${employee.id}`}>{employee.username}</Link></td>
+                    <td>{employee.role}</td>
+                    <td>Nam</td>
                     <td>
                       <button onClick={() => openModal(employee)}>
                         Sửa
@@ -191,21 +208,38 @@ const EmployeeManagement = () => {
               onChange={(e) => setEditingEmployee({ ...editingEmployee, password: e.target.value })}
             />
             <label>Chức Vụ:</label>
-            <input
+            {/* <input
               type="text"
               className='form-control'
               value={editingEmployee.position}
               onChange={(e) => setEditingEmployee({ ...editingEmployee, position: e.target.value })}
-            />
-            <label>Giới Tính:</label>
+            /> */
             <select
-              value={editingEmployee.gender}
+  className='form-control'
+  value={editingEmployee.position}
+  onChange={(e) => setEditingEmployee({ ...editingEmployee, position: e.target.value })}
+>
+  <option value="">Chọn chức vụ</option>
+  <option value="Trưởng điểm giao dịch">Trưởng điểm giao dịch</option>
+  <option value="Trưởng điểm kho">Trưởng điểm kho</option>
+  <option value="employee">Nhân viên</option>
+  
+</select>}
+            <label>Số điện thoại:</label>
+            {/* <select
+              value={editingEmployee.phone}
               className='form-control'
-              onChange={(e) => setEditingEmployee({ ...editingEmployee, gender: e.target.value })}
+              onChange={(e) => setEditingEmployee({ ...editingEmployee, phone: e.target.value })}
             >
               <option value="Nam">Nam</option>
               <option value="Nữ">Nữ</option>
-            </select>
+            </select> */
+            <input
+              type="text"
+              className='form-control'
+              value={editingEmployee.phone}
+              onChange={(e) => setEditingEmployee({ ...editingEmployee, phone: e.target.value })}
+            />}
           </div>
 
 

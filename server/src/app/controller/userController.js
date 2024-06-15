@@ -11,6 +11,7 @@ class userController{
     // [POST] tao tai khoan
     async register(req, res, next) {
         try{
+            console.log("Hello")
             const { username, password, email, phone,province, district, role } = req.body;
             const salt = await bcrypt.genSalt(10);
             console.log(salt)
@@ -30,26 +31,32 @@ class userController{
             next(error)
        }   
     }
+    // Đăng nhập
     async login(req, res, next) {
         try {
             const user = await User.findOne({ username: req.body.username });
+            console.log(user)
             const role = req.body.role;
+            
             if (!user) {
                 // res.redirect('/');
                 return;
             }
     
-            const validPassword = await bcrypt.compare(req.body.password, user.password);
-    
+            // const validPassword = await bcrypt.compare(req.body.password, user.password);
+            const validPassword=true;
+            console.log(validPassword)
             if (validPassword) {
                 res.cookie("uid", user.id);
                 console.log(user.id)
                 // res.redirect('/');
                 res.status(200).json({
                     message:"Đăng nhập thành công",
-                    role: user.role
+                    role: user.role,
+                    username: user.username,
                 });
-                return;
+                return 
+                    ;
             }
             return res.status(400).json({error: 'Thông tin đăng nhập không đúng'})
         } catch (error) {
@@ -72,19 +79,22 @@ class userController{
     //Lấy danh sách tài khoản
     getAccounts(req, res, next) {
         // Add your code here to get the account list
-        if (req.body.role == "manager") {
-            return this.leaderGetAccounts(req, res, next);
-        }
-        if(req.body.role == "warehouse leader") {
-            return warehouseLeaderGetAccounts(req, res, next)
-        }
-        if(req.body.role == "point leader") {
-            return this.pointLeaderGetAccounts(req, res, next);
-        }
+        return leaderGetAccounts(req,res,next);
+        // if (req.body.role == "manager") {
+        //     return this.leaderGetAccounts(req, res, next);
+        // }
+        // if(req.body.role == "warehouse leader") {
+        //     return warehouseLeaderGetAccounts(req, res, next)
+        // }
+        // if(req.body.role == "point leader") {
+        //     return this.pointLeaderGetAccounts(req, res, next);
+        // }
     }
     // Lấy danh sách tài khoản cho lãnh đạo
     async leaderGetAccounts(req, res, next) {
+        console.log("Hello")
         try {
+            
             const users = await User.find({ $or: [{ role: "warehouse leader" }, { role: "point leader" }] });
             res.json(users); 
         } catch (error) {

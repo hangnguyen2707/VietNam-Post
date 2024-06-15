@@ -70,7 +70,7 @@ export const Dashboard = () => {
                             <Link to="/managetranspoints">Quản Lý Điểm Giao Dịch</Link>
                         </li>
                         <li>
-                            <Link to="/managewarehouse">Quản Lý Điểm Tập Kết</Link>
+                            <Link to="/managewarehouse">Quản Lý Điểm Tập Kho</Link>
                         </li>
                         <li><Link to="/">Log Out</Link></li>
                         {/* <li onClick={() => handleMenuClick('login')}>Đăng Xuất</li> */}
@@ -86,7 +86,7 @@ export const Dashboard = () => {
                             <h2>Tổng Quan</h2>
                             <p>Số Lượng Đơn Hàng: {data.totalTransactions}</p>
                             <p>Số Lượng Điểm Giao Dịch: {data.totalDeliveryPoints}</p>
-                            <p>Số Lượng Điểm Tập Kết: {data.totalCenters}</p>
+                            <p>Số Lượng Điểm Kho: {data.totalCenters}</p>
                         </div>
                         <div className="income">
                             <h2>Doanh Thu</h2>

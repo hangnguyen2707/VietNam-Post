@@ -8,7 +8,7 @@ async function connect() {
 
   try {
     await mongoose.connect(
-      `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`,
+      `mongodb://localhost:27017/Post`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true

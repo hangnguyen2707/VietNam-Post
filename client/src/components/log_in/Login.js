@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async(event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch('http://localhost:8000/login', {
         method: 'POST',
         headers:
         {
@@ -23,9 +23,15 @@ const Login = () => {
         },
         body: JSON.stringify({ username, password }),
       })
+  
       const data = await response.json();
       console.log(data)
+      localStorage.setItem(
+        'username',
+        data.username
+      )
       if (response.ok) {
+        
         setRole(data.role);
         if (data.role === "manager") {
           navigate('/dashboard');
@@ -39,7 +45,8 @@ const Login = () => {
   };
 
   return (
-    <form className="login" onSubmit={handleSubmit}>
+    <div className="wrapper"> 
+      <form className="login" onSubmit={handleSubmit}>
       <h3>Sign In</h3>
 
       <div className="mb-3">
@@ -83,6 +90,7 @@ const Login = () => {
         Forgot <a href="#">password?</a>
       </p>
     </form>
+    </div>
   );
 }
 

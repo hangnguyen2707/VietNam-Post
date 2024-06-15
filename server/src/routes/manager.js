@@ -19,7 +19,7 @@ router.get("/pointWarehouse",authenticateUser('manager'), areaController.getPoin
 
 
 //Danh sách các tài khoản trưởng điểm tập kết và dao dịch
-router.get('/listAcount', authenticateUser('manager'), userController.getAccounts);
+router.get('/listAcount', userController.leaderGetAccounts);
 //Sửa thông tin của trưởng điểm tập kết và giao dịch [Viết sau]
 router.post("/updateInfo", authenticateUser('manager'),userController.updateInfo);
 

@@ -11,7 +11,7 @@ var cors = require('cors')
 const route = require("./routes")
 
 var app = express();
-const port = 3000;
+const port = 8000;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

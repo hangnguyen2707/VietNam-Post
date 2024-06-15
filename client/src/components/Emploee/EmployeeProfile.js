@@ -7,7 +7,7 @@ const EmployeeProfile = ({ match }) => {
     id: employeeId,
     name: 'Nguyen Van A',
     position: 'Giao Dịch Viên',
-    gender: 'Nam',
+    phone: '1234568789',
   };
 
   return (
@@ -16,7 +16,7 @@ const EmployeeProfile = ({ match }) => {
       <p>ID: {employee.id}</p>
       <p>Tên: {employee.name}</p>
       <p>Chức Vụ: {employee.position}</p>
-      <p>Giới Tính: {employee.gender}</p>
+      <p>Số điện thoại : {employee.phone}</p>
     </div>
   );
 };

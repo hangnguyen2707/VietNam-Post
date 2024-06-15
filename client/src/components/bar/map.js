@@ -69,19 +69,19 @@ export default function SimpleMap() {
           lat={21.026837216273547}
           lng={105.7790183602429}
           text={[
-            <h3>Magic Post 1</h3>,
+            <h3>Vietnam Post 1</h3>,
             <p>ĐCT20, Mỹ Đình, Từ Liêm, Hà Nội, Việt Nam</p>,
             <p>Hàng gửi: 100</p>,
             <p>Hàng nhận: 50</p>,
             <a href="">More detail</a>]}
-        //onClick={() => handleMarkerClick("Magic Post 1")}
+        //onClick={() => handleMarkerClick("Vietnam Post 1")}
         />
 
         <AnyReactComponent
           lat={21.036786}
           lng={105.782470}
           text={[
-            <h3>Magic Post 2</h3>,
+            <h3>Vietnam Post 2</h3>,
             <p>Xuân Thủy, Dịch Vọng Hậu, Cầu Giấy, Hà Nội, Việt Nam</p>,
             <p>Hàng gửi: 50</p>,
             <p>Hàng nhận: 100</p>,
@@ -93,7 +93,7 @@ export default function SimpleMap() {
           lat={21.017005}
           lng={105.828398}
           text={[
-            <h3>Magic Post 3</h3>,
+            <h3>Vietnam Post 3</h3>,
             <p>Nguyễn Lương Bằng/Ngõ 40 Tổ 40+Tổ 41, Chợ Dừa, Đống Đa, Hà Nội, Việt Nam</p>,
             <p>Hàng gửi: 50</p>,
             <p>Hàng nhận: 100</p>,
